@@ -2,4 +2,16 @@
     <string name="app_name">Ryder</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="passenger_name">Name:</string>
+    <string name="destination">Destination:</string>
+    <string name="date_time">Date and Time:</string>
+    <string name="request_bar">ADD REQUEST</string>
+    <string name="request_details">REQUEST DETAILS</string>
+    <string name="cost">Estimated cost</string>
+    <string name="no_of_people">Number of confirmed passengers:</string>
+    <string name="drivers_name">Driver\'s name:</string>
+    <string name="passengers">Confirmed passengers:</string>
+    <string name="ride_details">RIDE DETAILS</string>
+    <string name="reg_no">Vehicle Registration Number:</string>
+    <string name="space">Space left for:</string>
 </resources>
