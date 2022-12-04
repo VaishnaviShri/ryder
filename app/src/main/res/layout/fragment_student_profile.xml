@@ -4,15 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    tools:context=".ui.main.StudentProfileFragment">
+    tools:context=".ui.main.student.StudentProfileFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:id="@+id/profile_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="60dp"
+        android:text="Name"
+        android:textSize="@dimen/large_text"
+        />
+    <TextView
+        android:id="@+id/profile_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile_name"
+        android:layout_margin="30dp"
+        android:text="Name"
+        android:textSize="18sp"
+        />
 
     <Button
         android:id="@+id/student_logout_button"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="Button"
+        android:text="Log out"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

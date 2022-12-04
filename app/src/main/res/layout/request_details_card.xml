@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/live_cab_card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="20dp"
+    app:cardCornerRadius="20dp"
+    app:cardElevation="10dp"
+    android:padding="4dp"
+    tools:context=".MainActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/estimatedFareText"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="Estimated Fare"
+            android:textSize="25dp"
+            android:textColor="@android:color/black"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:text="345"
+            android:textSize="25dp"
+            android:id="@+id/estimatedFare"
+            app:layout_constraintStart_toEndOf="@+id/estimatedFareText"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/fromText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/estimatedFareText"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="Pick Up"
+            android:textSize="20dp"
+            android:textColor="@android:color/black"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/from"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:text="BITS"
+            android:textSize="20dp"
+            app:layout_constraintStart_toEndOf="@+id/fromText"
+            app:layout_constraintTop_toBottomOf="@id/estimatedFare" />
+
+        <TextView
+            android:id="@+id/toText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/fromText"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="Drop Off"
+            android:textSize="20dp"
+            android:textColor="@android:color/black"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/to"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:text="BITS"
+            android:textSize="20dp"
+            app:layout_constraintStart_toEndOf="@+id/toText"
+            app:layout_constraintTop_toBottomOf="@id/from" />
+
+        <TextView
+            android:id="@+id/vehicleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/toText"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="Vehicle"
+            android:textSize="20dp"
+            android:textColor="@android:color/black"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/vehicle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:text="Rickshaw"
+            android:textSize="20dp"
+            app:layout_constraintStart_toEndOf="@+id/vehicleText"
+            app:layout_constraintTop_toBottomOf="@id/to" />
+
+        <TextView
+            android:id="@+id/timeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/vehicleText"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="Departure Time"
+            android:textSize="20dp"
+            android:textColor="@android:color/black"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:text="5:30pm"
+            android:textSize="20dp"
+            app:layout_constraintStart_toEndOf="@+id/timeText"
+            app:layout_constraintTop_toBottomOf="@id/vehicle" />
+        <TextView
+            android:id="@+id/capacityTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/timeText"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="Status"
+            android:textSize="20dp"
+            android:textColor="@android:color/black"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/capacity"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:text="5"
+            android:textSize="20dp"
+
+            app:layout_constraintStart_toEndOf="@+id/capacityTextView"
+            app:layout_constraintTop_toBottomOf="@id/time" />
+
+
+        <TextView
+            android:id="@+id/ridersText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:text="Riders"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/capacityTextView" />
+
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/ridersList"
+            app:layout_constraintTop_toBottomOf="@id/ridersText"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="20dp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

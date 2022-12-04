@@ -7,6 +7,16 @@ public class Driver {
     String name;
     String vehicle_number;
     String vehicle_type;
+    int capacity;
+    ArrayList<String> my_rides_ids;
+
+    public ArrayList<String> getMy_rides_ids() {
+        return my_rides_ids;
+    }
+
+    public void setMy_rides_ids(ArrayList<String> my_rides_ids) {
+        this.my_rides_ids = my_rides_ids;
+    }
 
     public String getUid() {
         return uid;
@@ -48,14 +58,5 @@ public class Driver {
         this.capacity = capacity;
     }
 
-    public ArrayList<LiveCab> getMyRides() {
-        return myRides;
-    }
 
-    public void setMyRides(ArrayList<LiveCab> myRides) {
-        this.myRides = myRides;
-    }
-
-    int capacity;
-    ArrayList<LiveCab> myRides;
 }

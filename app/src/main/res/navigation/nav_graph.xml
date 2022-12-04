@@ -14,13 +14,20 @@
             android:id="@+id/action_splashScreen_to_loginFragment"
             app:destination="@id/loginFragment" />
         <action
+
             android:id="@+id/action_splashScreen_to_cabsFragment"
             app:destination="@id/cabsFragment" />
+
+        <action
+            android:id="@+id/action_splashScreen_to_driverFragment"
+            app:destination="@id/driverFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.ryderr.ui.main.login.LoginFragment"
         android:label="login screen"
+
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_liveCabs"
@@ -32,13 +39,12 @@
 
             android:id="@+id/action_loginFragment_to_driverLogin"
             app:destination="@id/driverLogin" />
-            android:id="@+id/action_loginFragment_self"
-            app:destination="@id/loginFragment" />
+
 
     </fragment>
     <fragment
         android:id="@+id/cabsFragment"
-        android:name="com.example.ryderr.ui.main.studentHome.CabsFragment"
+        android:name="com.example.ryderr.ui.main.student.studentHome.CabsFragment"
         android:label="fragment_cabs"
         tools:layout="@layout/fragment_cabs" >
         <action
@@ -47,16 +53,26 @@
         <action
             android:id="@+id/action_cabsFrag_to_addRequest"
             app:destination="@id/addRequest" />
+        <action
+            android:id="@+id/action_cabsFrag_to_studentRequestDetailsFragment"
+            app:destination="@id/studentRequestDetailsFragment" >
+            <argument
+                android:name="request_id"
+                app:argType="string"
+                android:defaultValue="0" />
+        </action>
+
+
     </fragment>
     <fragment
         android:id="@+id/liveLiveCabs"
-        android:name="com.example.ryderr.ui.main.studentHome.live.LiveCabsFragment"
+        android:name="com.example.ryderr.ui.main.student.studentHome.live.LiveCabsFragment"
         android:label="live cabs frag"
         tools:layout="@layout/fragment_live_cabs" />
 
     <fragment
         android:id="@+id/studentProfile"
-        android:name="com.example.ryderr.ui.main.StudentProfileFragment"
+        android:name="com.example.ryderr.ui.main.student.StudentProfileFragment"
         android:label="srudent profile frag"
         tools:layout="@layout/fragment_student_profile" >
         <action
@@ -66,7 +82,7 @@
     <fragment
 
         android:id="@+id/driverLogin"
-        android:name="com.example.ryderr.ui.main.driverLogin.DriverLoginFragment"
+        android:name="com.example.ryderr.ui.main.login.driverLogin.DriverLoginFragment"
         android:label="driver login frag"
         tools:layout="@layout/fragment_driver_login" >
         <action
@@ -74,11 +90,16 @@
             app:destination="@id/cabsFragment" />
         <action
             android:id="@+id/action_driverLogin_to_liveCabs"
-            app:destination="@id/liveCabs" />
-</fragment>
+
+            app:destination="@id/liveLiveCabs" />
+        <action
+            android:id="@+id/action_driverLogin_to_driverFragment"
+            app:destination="@id/driverFragment" />
+
+    </fragment>
 <fragment
         android:id="@+id/addRequest"
-        android:name="com.example.ryderr.ui.main.addRequest.AddRequest"
+        android:name="com.example.ryderr.ui.main.student.addRequest.AddRequest"
         android:label="add req frag"
         tools:layout="@layout/fragment_add_request" >
         <action
@@ -88,7 +109,7 @@
 
     <fragment
         android:id="@+id/requestFrag"
-        android:name="com.example.ryderr.ui.main.studentHome.request.RequestFragment"
+        android:name="com.example.ryderr.ui.main.student.studentHome.request.RequestFragment"
         android:label=" req frag"
         tools:layout="@layout/fragment_request" >
         <action
@@ -96,5 +117,74 @@
             app:destination="@id/addRequest" />
 
     </fragment>
+
+    <fragment
+        android:id="@+id/driverFragment"
+        android:name="com.example.ryderr.ui.main.driver.driverHome.DriverFragment"
+        android:label="DriverFragment" >
+        <action
+            android:id="@+id/action_driverFrag_to_driverRequestDetailsFragment"
+            app:destination="@id/driverRequestDetailsFragment" >
+            <argument
+                android:name="request_id"
+                app:argType="string"
+                android:defaultValue="0" />
+        </action>
+        <action
+            android:id="@+id/action_driverFragment_to_driverProfileFragment"
+            app:destination="@id/driverProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/driverProfileFragment"
+        android:name="com.example.ryderr.ui.main.driver.DriverProfileFragment"
+        android:label="fragment_driver_profile"
+        tools:layout="@layout/fragment_driver_profile" >
+        <action
+            android:id="@+id/action_driverProfileFragment_to_splashScreen"
+            app:destination="@id/splashScreen" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.example.ryderr.ui.main.chat.ChatFragment"
+        android:label="chat screen"
+        tools:layout="@layout/fragment_chat"/>
+
+    <fragment
+        android:id="@+id/requestDriverFragment"
+        android:name="com.example.ryderr.ui.main.driver.driverHome.request_Driver.RequestDriverFragment"
+        android:label="RequestDriverFragment" >
+        <action
+            android:id="@+id/action_requestDriverFragment_to_driverRequestDetailsFragment"
+            app:destination="@id/driverRequestDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/studentRequestDetailsFragment"
+        android:name="com.example.ryderr.ui.main.student.studentRequestDetails.StudentRequestDetailsFragment"
+        android:label="fragment_student_request_details"
+        tools:layout="@layout/fragment_student_request_details" >
+        <argument
+            android:name="request_id"
+            app:argType="string"
+            android:defaultValue="0" />
+        <action
+            android:id="@+id/action_studentRequestDetailsFragment_to_cabsFragment"
+            app:destination="@id/cabsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/driverRequestDetailsFragment"
+        android:name="com.example.ryderr.ui.main.driver.driverHome.driverRequestDetails.DriverRequestDetailsFragment"
+        android:label="fragment_driver_request_details"
+        tools:layout="@layout/fragment_driver_request_details" >
+        <argument
+            android:name="request_id"
+            app:argType="string"
+            android:defaultValue="0" />
+        <action
+            android:id="@+id/action_driverRequestDetailsFragment_to_driverFragment"
+            app:destination="@id/driverFragment" />
+    </fragment>
+
 
 </navigation>

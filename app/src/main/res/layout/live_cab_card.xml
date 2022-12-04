@@ -127,7 +127,7 @@
             android:layout_marginTop="8dp"
             android:text="To: Parade Grounds"
             android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cab_from_text" />
 
         <TextView

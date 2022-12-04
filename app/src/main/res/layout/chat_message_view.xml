@@ -1,0 +1,53 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="1dp">
+    <LinearLayout
+        android:id="@+id/left_msg"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:background="#f5e76c">
+
+        <TextView
+            android:id="@+id/left_msg_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"/>
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:text="10:23AM"
+            android:id="@+id/msg_time_left"
+            android:textSize="12sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/right_msg"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:background="#ffdaf7a6">
+
+        <TextView
+            android:id="@+id/right_msg_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="20dp"/>
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:text="10:23AM"
+            android:id="@+id/msg_time_right"
+            android:textSize="12sp"
+            android:textAlignment = "viewEnd" />
+
+
+    </LinearLayout>
+</LinearLayout>

@@ -18,7 +18,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
@@ -27,7 +26,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import androidx.annotation.NonNull;
@@ -135,24 +133,16 @@ public class LoginFragment extends Fragment {
 
     }
     private void updateUI(FirebaseUser user){
-        String name = user.getDisplayName();
-        Student student = new Student(user.getUid(), name, user.getEmail());
-        db.collection("students")
-                        .add(student).addOnSuccessListener(
-                        new OnSuccessListener<DocumentReference>() {
-                            @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-
-                            }
-                        }) .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.e(TAG, "Error adding document", e);
-                    }
-                });
-        Toast.makeText(getContext(), name, Toast.LENGTH_SHORT).show();
-        Navigation.findNavController(mView).navigate(R.id.action_loginFragment_to_cabsFragment);
+        String email = user.getEmail();
+        if(email.endsWith("hyderabad.bits-pilani.ac.in")){
+            String name = user.getDisplayName();
+            Student student = new Student(user.getUid(), name, user.getEmail());
+            db.collection("students").document(student.getUid()).set(student);
+            Toast.makeText(getContext(), name, Toast.LENGTH_SHORT).show();
+            Navigation.findNavController(mView).navigate(R.id.action_loginFragment_to_cabsFragment);
+        }else{
+            Toast.makeText(getContext(), "Please use BITS mail!", Toast.LENGTH_SHORT).show();
+        }
 
     }
     private void signIn(GoogleSignInAccount account){
@@ -171,7 +161,12 @@ public class LoginFragment extends Fragment {
                         }else{
                                 Toast.makeText(getContext(), "welcome "+name, Toast.LENGTH_SHORT).show();
                         }
-                        Navigation.findNavController(mView).navigate(R.id.action_loginFragment_to_liveCabs);
+                        if(email.endsWith("hyderabad.bits-pilani.ac.in")){
+                            Navigation.findNavController(mView).navigate(R.id.action_loginFragment_to_liveCabs);
+                        }else{
+                            Toast.makeText(getContext(), "Please use BITS mail!", Toast.LENGTH_SHORT).show();
+                        }
+
 
                     }
                 });

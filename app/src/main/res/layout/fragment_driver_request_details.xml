@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.main.driver.driverHome.driverRequestDetails.DriverRequestDetailsFragment">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Request Details"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="30dp"
+            android:id="@+id/driverRequestDetailsText"/>
+        <include
+            android:id="@+id/driverRequestDetailsCard"
+            layout="@layout/request_details_card"
+            app:layout_constraintBottom_toBottomOf="@id/acceptButton"
+            app:layout_constraintTop_toBottomOf="@id/driverRequestDetailsText" />
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FFa0ee90"
+            android:text="Accept"
+            android:id="@+id/acceptButton"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/driverRequestDetailsCard"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
