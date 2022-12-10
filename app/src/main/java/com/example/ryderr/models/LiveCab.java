@@ -53,6 +53,16 @@ public class LiveCab {
     int fare;
 
     ArrayList<String> riders_ids;
+
+    public ArrayList<String> getRiders_names() {
+        return riders_names;
+    }
+
+    public void setRiders_names(ArrayList<String> riders_names) {
+        this.riders_names = riders_names;
+    }
+
+    ArrayList<String> riders_names;
     int count_riders;
 
     public ArrayList<String> getRiders_ids() {

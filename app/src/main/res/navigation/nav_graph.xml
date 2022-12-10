@@ -61,6 +61,14 @@
                 app:argType="string"
                 android:defaultValue="0" />
         </action>
+        <action
+            android:id="@+id/action_cabsFrag_to_studentCabDetailsFragment"
+            app:destination="@id/studentLiveCabDetailsFragment" >
+            <argument
+                android:name="cab_id"
+                app:argType="string"
+                android:defaultValue="0" />
+        </action>
 
 
     </fragment>
@@ -184,6 +192,19 @@
         <action
             android:id="@+id/action_driverRequestDetailsFragment_to_driverFragment"
             app:destination="@id/driverFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/studentLiveCabDetailsFragment"
+        android:name="com.example.ryderr.ui.main.student.studentLiveCabDetails.StudentLiveCabDetailsFragment"
+        android:label="fragment_student_live_cab_details"
+        tools:layout="@layout/fragment_student_live_cab_details" >
+        <argument
+            android:name="cab_id"
+            app:argType="string"
+            android:defaultValue="0" />
+        <action
+            android:id="@+id/action_studentCabDetailsFragment_to_cabsFragment"
+            app:destination="@id/cabsFragment" />
     </fragment>
 
 

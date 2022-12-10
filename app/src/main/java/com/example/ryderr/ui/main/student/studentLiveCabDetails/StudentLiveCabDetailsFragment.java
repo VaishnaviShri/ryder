@@ -10,21 +10,25 @@ import android.widget.TextView;
 
 import com.example.ryderr.R;
 import com.example.ryderr.models.LiveCab;
+import com.example.ryderr.ui.main.student.studentHome.live.LiveCabsViewModel;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 
 public class StudentLiveCabDetailsFragment extends Fragment {
     private LiveCab liveCabOb;
     private TextView fare, from, to, vehicle, vehicleNo, time, capacity, driver;
     private ListView ridersList;
+    private LiveCabsViewModel mViewModel;
     public StudentLiveCabDetailsFragment() {
         // Required empty public constructor
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         liveCabOb = new LiveCab();
+        mViewModel = new LiveCabsViewModel();
         super.onCreate(savedInstanceState);
     }
 
@@ -45,17 +49,29 @@ public class StudentLiveCabDetailsFragment extends Fragment {
         time = (TextView)view.findViewById(R.id.time_livecabdetails);
         capacity = (TextView)view.findViewById(R.id.capacity_livecabdetails);
         driver = (TextView)view.findViewById(R.id.driver_livecabdetails);
-        from.setText(liveCabOb.getFrom_location());
-        fare.setText(liveCabOb.getFare());
-        to.setText(liveCabOb.getTo_location());
-        vehicle.setText(liveCabOb.getVehicle_type());
-        vehicleNo.setText(liveCabOb.getVehicle_number());
-        time.setText(liveCabOb.getDeparture_time());
-        capacity.setText(liveCabOb.getCapacity());
-        driver.setText(liveCabOb.getDriver_name());
-        ridersList = (ListView)view.findViewById(R.id.ridersList_livecabdetails);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, liveCabOb.getDisplay());
-        ridersList.setAdapter(arrayAdapter);
+
+        String cabId = StudentLiveCabDetailsFragmentArgs.fromBundle(getArguments()).getCabId();
+
+        Observer<LiveCab> observer = new Observer<LiveCab>() {
+            @Override
+            public void onChanged(LiveCab liveCab) {
+                liveCabOb = liveCab;
+                from.setText(liveCabOb.getFrom_location());
+                fare.setText(liveCabOb.getFare());
+                to.setText(liveCabOb.getTo_location());
+                vehicle.setText(liveCabOb.getVehicle_type());
+                vehicleNo.setText(liveCabOb.getVehicle_number());
+                time.setText(liveCabOb.getDeparture_time());
+                capacity.setText(liveCabOb.getCapacity());
+                driver.setText(liveCabOb.getDriver_name());
+                ridersList = (ListView)view.findViewById(R.id.ridersList_livecabdetails);
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, liveCabOb.getDisplay());
+                ridersList.setAdapter(arrayAdapter);
+            }
+        };
+
+        mViewModel.getLiveCabDetail(cabId).observe(getViewLifecycleOwner(), observer);
+
         super.onViewCreated(view, savedInstanceState);
     }
 }

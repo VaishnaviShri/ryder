@@ -8,12 +8,8 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.GenericTypeIndicator;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -21,7 +17,6 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
@@ -99,70 +94,49 @@ public MutableLiveData<Integer> getRiderCount(){
         return status[0];
 
     }
-    public void joinCab(String cabId){
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
-        String uid = mAuth.getCurrentUser().getUid();
-        final ArrayList<String>[] riders = new ArrayList[]{new ArrayList<>()};
-        DatabaseReference liveCabRef = mDatabase.child("cabs").child(cabId);
-        // Query queryRef = liveCabRef.orderByChild("live").equalTo(true);
-        liveCabRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                                                      @Override
-                                                      public void onDataChange(DataSnapshot dataSnapshot) {
 
-                                                          GenericTypeIndicator<HashMap<String, String>> t =
-                                                                  new GenericTypeIndicator<HashMap<String, String>>() {
-                                                                  };
+    MutableLiveData<LiveCab> liveCabDetail;
+    public MutableLiveData<LiveCab> getLiveCabDetail(String cabId){
+        if(liveCabDetail==null)
+            liveCabDetail = new MutableLiveData<>();
 
-                                                          HashMap<String, String> hashMap;
-                                                          hashMap = (HashMap<String, String>) dataSnapshot.getValue(t);
+        final LiveCab[] cab = {new LiveCab()};
 
-                                                          ArrayList<String> riderList;
-                                                          if (hashMap != null) {
-                                                              riderList = new ArrayList<String>(hashMap.values());
+        DocumentReference docRef = db.collection("cabs").document(cabId);
+        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        cab[0] = documentSnapshot.toObject(LiveCab.class);
+                        Log.d(TAG, cab[0].getFrom_location());
 
-
-                                                          } else {
-                                                              riderList = new ArrayList<String>();
-
-                                                          }
-//                GenericTypeIndicator<HashMap<String,Cab>> t=  new GenericTypeIndicator<HashMap<String,Cab>>() { };
-//                ArrayList<Cab> cabsList = dataSnapshot.getValue(t);
-                                                          riders[0] = riderList;
-
-                                                      }
-
-                                                      @Override
-                                                      public void onCancelled(@NonNull DatabaseError error) {
-
-                                                      }
-                                                  });
-
-            riders[0].add(uid);
-
-        mDatabase.child("cabs").child(cabId).setValue(riders[0]);
-        DatabaseReference liveCabRefCount = mDatabase.child("cabs").child(cabId);
-        // Query queryRef = liveCabRef.orderByChild("live").equalTo(true);
-        final int[] riders_count = {0};
-        mDatabase.child("cabs").child(cabId).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    riders_count[0] = (int) task.getResult().getValue();
-                    Log.e("firebase", "Error getting data", task.getException());
-                }
-                else {
-                    Log.d("firebase", String.valueOf(task.getResult().getValue()));
-                }
-            }
-        });
-        int newCount = riders_count[0]+1;
-        mDatabase.child("cabs").child(cabId).child("count_riders").setValue(newCount);
+                        ArrayList<String> ridersNames = new ArrayList<>();
+                        ArrayList<String> ridersIds = cab[0].getRiders_ids();
+                        for(int i=0;i<ridersIds.size();i++){
+                            String id = ridersIds.get(i);
+                            DocumentReference d = db.collection("students").document(id);
+                            d.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                @Override
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    String name = documentSnapshot.get("displayName", String.class);
+                                    Log.d(TAG, "onSuccess: "+ name);
+                                    ridersNames.add(name);
+                                }
+                            });
+                        }
+                        cab[0].setRiders_names(ridersNames);
 
 
+                        liveCabDetail.setValue(cab[0]);
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.e(TAG, "onFailure: count not fetched"+ e.getMessage() );
+                    }
+                });
 
-
-
+        return liveCabDetail;
     }
 
     public ArrayList<LiveCab> populate(){
