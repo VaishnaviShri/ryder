@@ -149,6 +149,9 @@
         <action
             android:id="@+id/action_driverFragment_to_driverProfileFragment"
             app:destination="@id/driverProfileFragment" />
+        <action
+            android:id="@+id/action_driverFragment_to_driverCurrentCab"
+            app:destination="@id/driverCurrentCab" />
     </fragment>
     <fragment
         android:id="@+id/driverProfileFragment"
@@ -241,6 +244,15 @@
             android:id="@+id/action_driverLiveCabDetailsFragment_to_driverFragment"
             app:destination="@id/driverFragment" />
 
+    </fragment>
+    <fragment
+        android:id="@+id/driverCurrentCab"
+        android:name="com.example.ryderr.ui.main.driver.driverHome.DriverCurrentCabDetailsFragment"
+        android:label="current cab"
+        tools:layout="@layout/fragment_driver_current_cab_details">
+        <action
+            android:id="@+id/action_driverCurrentCab_to_driverFragment"
+            app:destination="@id/driverFragment" />
     </fragment>
 
 

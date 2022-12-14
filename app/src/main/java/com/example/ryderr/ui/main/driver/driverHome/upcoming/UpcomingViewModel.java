@@ -2,6 +2,7 @@ package com.example.ryderr.ui.main.driver.driverHome.upcoming;
 
 import android.util.Log;
 
+import com.example.ryderr.models.Driver;
 import com.example.ryderr.models.LiveCab;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -138,6 +139,20 @@ public class UpcomingViewModel extends ViewModel {
     public void endRide(String cabId){
         db.collection("cabs").document(cabId).update("live", false);
 
+    }
+
+    public void startRide(String cabId){
+        String driverId = FirebaseAuth.getInstance().getUid();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference docRef = db.collection("drivers").document(driverId);
+        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Driver driver = documentSnapshot.toObject(Driver.class);
+                driver.setCurrent_ride_id(cabId);
+                db.collection("drivers").document(driverId).set(driver);
+            }
+        });
     }
 
 

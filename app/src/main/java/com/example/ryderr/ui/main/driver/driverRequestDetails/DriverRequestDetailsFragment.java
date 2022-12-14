@@ -8,6 +8,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.ryderr.R;
+import com.example.ryderr.models.Driver;
 import com.example.ryderr.models.LiveCab;
 import com.example.ryderr.models.Request;
 import com.example.ryderr.ui.main.driver.driverHome.request_Driver.RequestDriverViewModel;
@@ -89,11 +90,29 @@ public class DriverRequestDetailsFragment extends Fragment {
                                     request.getTime(),
                                     request.getExpected_fare(),
                                     request.getRiders_ids(),
-                                    request.getRiders_names());
-                            db.collection("cabs").document(requestId).set(cab);
+                                    request.getRiders_names(),
+                                    "Ramesh",
+                                    "TN32CX7650",
+                                    request.getVehicle_type(),
+                                    request.getCapacity());
+                            String driverId = FirebaseAuth.getInstance().getUid();
+                            FirebaseFirestore db = FirebaseFirestore.getInstance();
+                            DocumentReference docRef = db.collection("drivers").document(driverId);
+                            docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    Driver driver = documentSnapshot.toObject(Driver.class);
+                                    cab.setDriver_id(driverId);
+                                    cab.setDriver_name(driver.getName());
+                                    cab.setVehicle_number(driver.getVehicle_number());
 
-                            db.collection("requests").document(requestId).delete();
-                            Navigation.findNavController(view).navigate(R.id.action_driverRequestDetailsFragment_to_driverFragment);
+                                        db.collection("cabs").document(requestId).set(cab);
+
+                                        db.collection("requests").document(requestId).delete();
+                                        Navigation.findNavController(view).navigate(R.id.action_driverRequestDetailsFragment_to_driverFragment);
+
+                                    }
+                            });
 
                         }
                     });

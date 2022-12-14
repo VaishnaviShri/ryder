@@ -2,11 +2,13 @@ package com.example.ryderr.ui.main.driver.driverHome.request_Driver;
 
 import android.util.Log;
 
+import com.example.ryderr.models.Driver;
 import com.example.ryderr.models.Request;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -15,6 +17,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
@@ -44,25 +47,40 @@ public class RequestDriverViewModel extends ViewModel {
             driverRequests = new MutableLiveData<>();
         }
 
+        String driverId = FirebaseAuth.getInstance().getUid();
 
-        ArrayList<Request> requestList = new ArrayList<>();
-        db.collection("requests")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                                Request request = document.toObject(Request.class);
-                                requestList.add(request);
+        db.collection("drivers").document(driverId)
+            .get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                Driver driver = documentSnapshot.toObject(Driver.class);
+                String vehicleType = driver.getVehicle_type();
+                int capacity = driver.getCapacity();
+                ArrayList<Request> requestList = new ArrayList<>();
+                db.collection("requests")
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                        Log.d(TAG, document.getId() + " => " + document.getData());
+                                        Request request = document.toObject(Request.class);
+                                        if(request.getCapacity()<capacity && Objects.equals(
+                                                request.getVehicle_type(), vehicleType))
+                                            requestList.add(request);
+                                    }
+                                    driverRequests.setValue(requestList);
+                                } else {
+                                    Log.d(TAG, "Error getting requests documents: ", task.getException());
+                                }
                             }
-                            driverRequests.setValue(requestList);
-                        } else {
-                            Log.d(TAG, "Error getting requests documents: ", task.getException());
-                        }
-                    }
-                });
+                        });
+            }
+        });
+
+
+
 
         return driverRequests;
     }

@@ -13,7 +13,6 @@ import java.util.Collections;
 import java.util.List;
 
 import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.Observer;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -49,30 +48,31 @@ l = (LifecycleOwner) parent.getContext();
         final int index = holder.getAdapterPosition();
 
         LiveCab liveCab = list.get(position);//observe list
-        holder.from.setText(liveCab.getFrom_location());
-        holder.to.setText(liveCab.getTo_location());
+        String fromText = "from: "+ liveCab.getFrom_location();
+        holder.from.setText(fromText);
+        String toText = "to: "+ liveCab.getTo_location();
+        holder.to.setText(toText);
         holder.timeText.setText(liveCab.getDeparture_time());
         holder.driver_name.setText(liveCab.getDriver_name());
         holder.vehicle.setText(liveCab.getVehicle_number());
         holder.fare_text.setText(liveCab.getFareText());
         int capacity = liveCab.getCapacity();
-        final int[] count_riders = {liveCab.getCount_riders()};
-        String progressText = count_riders[0] + "/" + capacity;
+        int count_riders = liveCab.getCount_riders();
+        String progressText = count_riders + "/" + capacity;
         holder.cabProgressText.setText(progressText);
         holder.cabProgressBar.setMax(capacity);
-        holder.cabProgressBar.setProgress(count_riders[0]);
+        holder.cabProgressBar.setProgress(count_riders);
 
-        Observer<Integer> observer = new Observer<Integer>() {
-            @Override
-            public void onChanged(Integer integer) {
-                count_riders[0] = integer;
-                String progressText = count_riders[0] + "/" + capacity;
-                holder.cabProgressText.setText(progressText);
-                holder.cabProgressBar.setProgress(count_riders[0]);
-            }
-        };
-
-        cabViewModel.getRiderCount().observe(l, observer);
+//        Observer<Integer> observer = new Observer<Integer>() {
+//            @Override
+//            public void onChanged(Integer count) {
+//                String progressText = count + "/" + capacity;
+//                holder.cabProgressText.setText(progressText);
+//                holder.cabProgressBar.setProgress(count);
+//            }
+//        };
+//
+//        cabViewModel.getRiderCount().observe(l, observer);
 
         holder.joinButton.setOnClickListener(view -> {
             cabViewModel.joinCabStudent(liveCab.getLive_cab_id());
