@@ -37,33 +37,27 @@
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/large_text"
                 android:text="Pickup:"/>
-            <EditText
-                android:id="@+id/editViewPickup"
-                android:layout_width="290dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/styles"
-                android:hint="pickup location"/>
+            <Spinner
+                android:id="@+id/pickup_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
-        <TextView
+
+            <TextView
             android:id="@+id/textViewDestination"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
             android:textSize="@dimen/large_text"
-            android:text="@string/destination">
+            android:text="@string/destination"/>
 
-        </TextView>
-        <EditText
-            android:id="@+id/editTextDestination"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
 
-            android:hint="@string/destination"
+            <Spinner
+                android:id="@+id/destination_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
-            android:background="@drawable/styles">
-
-        </EditText>
-        <TextView
+            <TextView
             android:id="@+id/textViewDateTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

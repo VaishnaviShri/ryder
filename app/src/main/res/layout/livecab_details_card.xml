@@ -8,16 +8,15 @@
     android:layout_margin="20dp"
     app:cardCornerRadius="20dp"
     app:cardElevation="10dp"
-    android:padding="4dp"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity" >
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
-            android:id="@+id/estimatedFareText"
+            android:id="@+id/estimatedFareText_livecabdetails"
             app:layout_constraintStart_toStartOf="parent"
             android:text="Estimated Fare"
             android:textSize="25dp"
@@ -25,8 +24,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="20dp"
             android:textStyle="bold"
-            android:paddingLeft="20dp"
-            />
+            android:paddingLeft="20dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -35,15 +33,15 @@
             android:layout_marginTop="20dp"
             android:text="345"
             android:textSize="25dp"
-            android:id="@+id/estimatedFare"
-            app:layout_constraintStart_toEndOf="@+id/estimatedFareText"
+            android:id="@+id/estimatedFare_livecabdetails"
+            app:layout_constraintStart_toEndOf="@+id/estimatedFareText_livecabdetails"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/fromText"
+            android:id="@+id/fromText_livecabdetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/estimatedFareText"
+            app:layout_constraintTop_toBottomOf="@id/estimatedFareText_livecabdetails"
             app:layout_constraintStart_toStartOf="parent"
             android:text="Pick Up"
             android:textSize="20dp"
@@ -51,25 +49,24 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:textStyle="bold"
-            android:paddingLeft="20dp"
-            />
+            android:paddingLeft="20dp"/>
 
         <TextView
-            android:id="@+id/from"
+            android:id="@+id/from_livecabdetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:text="BITS"
             android:textSize="20dp"
-            app:layout_constraintStart_toEndOf="@+id/fromText"
-            app:layout_constraintTop_toBottomOf="@id/estimatedFare" />
+            app:layout_constraintStart_toEndOf="@id/fromText_livecabdetails"
+            app:layout_constraintTop_toBottomOf="@id/estimatedFare_livecabdetails" />
 
         <TextView
-            android:id="@+id/toText"
+            android:id="@+id/toText_livecabdetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/fromText"
+            app:layout_constraintTop_toBottomOf="@id/fromText_livecabdetails"
             app:layout_constraintStart_toStartOf="parent"
             android:text="Drop Off"
             android:textSize="20dp"
@@ -77,25 +74,24 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:textStyle="bold"
-            android:paddingLeft="20dp"
-            />
+            android:paddingLeft="20dp"/>
 
         <TextView
-            android:id="@+id/to"
+            android:id="@+id/to_livecabdetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:text="BITS"
             android:textSize="20dp"
-            app:layout_constraintStart_toEndOf="@+id/toText"
-            app:layout_constraintTop_toBottomOf="@id/from" />
+            app:layout_constraintStart_toEndOf="@+id/toText_livecabdetails"
+            app:layout_constraintTop_toBottomOf="@id/from_livecabdetails" />
 
         <TextView
-            android:id="@+id/vehicleText"
+            android:id="@+id/vehicleTypeText_livecabdetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/toText"
+            app:layout_constraintTop_toBottomOf="@id/toText_livecabdetails"
             app:layout_constraintStart_toStartOf="parent"
             android:text="Vehicle"
             android:textSize="20dp"
@@ -103,25 +99,48 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:textStyle="bold"
-            android:paddingLeft="20dp"
-            />
+            android:paddingLeft="20dp"/>
 
         <TextView
-            android:id="@+id/vehicle"
+            android:id="@+id/vehicleType_livecabdetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:text="Rickshaw"
             android:textSize="20dp"
-            app:layout_constraintStart_toEndOf="@+id/vehicleText"
-            app:layout_constraintTop_toBottomOf="@id/to" />
-
+            app:layout_constraintStart_toEndOf="@id/vehicleTypeText_livecabdetails"
+            app:layout_constraintTop_toBottomOf="@id/to_livecabdetails" />
         <TextView
-            android:id="@+id/timeText"
+            android:id="@+id/vehicleNumberText_livecabdetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/vehicleText"
+            app:layout_constraintTop_toBottomOf="@id/vehicleTypeText_livecabdetails"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="Vehicle Number"
+            android:textSize="20dp"
+            android:textColor="@android:color/black"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            android:paddingLeft="20dp"/>
+
+        <TextView
+            android:id="@+id/vehicleNumber_livecabdetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:text="Rickshaw"
+            android:textSize="20dp"
+            app:layout_constraintStart_toEndOf="@id/vehicleNumberText_livecabdetails"
+            app:layout_constraintTop_toBottomOf="@id/vehicleType_livecabdetails" />
+
+        <TextView
+            android:id="@+id/timeText_livecabdetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/vehicleNumberText_livecabdetails"
             app:layout_constraintStart_toStartOf="parent"
             android:text="Departure Time"
             android:textSize="20dp"
@@ -129,45 +148,67 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:textStyle="bold"
-            android:paddingLeft="20dp"
-            />
+            android:paddingLeft="20dp"/>
 
         <TextView
-            android:id="@+id/time"
+            android:id="@+id/time_livecabdetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:text="5:30pm"
             android:textSize="20dp"
-            app:layout_constraintStart_toEndOf="@+id/timeText"
-            app:layout_constraintTop_toBottomOf="@id/vehicle" />
+            app:layout_constraintStart_toEndOf="@+id/timeText_livecabdetails"
+            app:layout_constraintTop_toBottomOf="@id/vehicleNumber_livecabdetails" />
         <TextView
-            android:id="@+id/capacityTextView"
+            android:id="@+id/capacityText_livecabdetails"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/timeText"
+            app:layout_constraintTop_toBottomOf="@id/timeText_livecabdetails"
             app:layout_constraintStart_toStartOf="parent"
-            android:text="Status"
+            android:text="Capacity"
             android:textSize="20dp"
             android:textColor="@android:color/black"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:textStyle="bold"
-            android:paddingLeft="20dp"
-            />
+            android:paddingLeft="20dp"/>
 
         <TextView
-            android:id="@+id/capacity"
-            android:layout_width="250dp"
+            android:id="@+id/capacity_livecabdetails"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             android:text="5"
             android:textSize="20dp"
+            app:layout_constraintStart_toEndOf="@+id/capacityText_livecabdetails"
+            app:layout_constraintTop_toBottomOf="@id/time_livecabdetails" />
 
-            app:layout_constraintStart_toEndOf="@+id/capacityTextView"
-            app:layout_constraintTop_toBottomOf="@id/time" />
+        <TextView
+            android:id="@+id/driverText_livecabdetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/capacityText_livecabdetails"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="Driver Name"
+            android:textSize="20dp"
+            android:textColor="@android:color/black"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            android:paddingLeft="20dp"/>
+
+        <TextView
+            android:id="@+id/driver_livecabdetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:text="Rickshaw"
+            android:textSize="20dp"
+            app:layout_constraintStart_toEndOf="@id/driverText_livecabdetails"
+            app:layout_constraintTop_toBottomOf="@id/capacity_livecabdetails" />
 
 
         <TextView
@@ -181,16 +222,14 @@
             android:textStyle="bold"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/capacityTextView"
             android:paddingLeft="20dp"
-            />
-
+            app:layout_constraintTop_toBottomOf="@id/driverText_livecabdetails" />
 
 
         <ListView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/ridersList"
+            android:id="@+id/ridersList_livecabdetails"
             app:layout_constraintTop_toBottomOf="@id/ridersText"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginBottom="20dp"/>

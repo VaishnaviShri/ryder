@@ -6,6 +6,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class LiveCab {
 
@@ -24,6 +25,15 @@ public class LiveCab {
 
     String driver_name;
     String vehicle_number;
+
+    public String getVehicle_type() {
+        return vehicle_type;
+    }
+
+    public void setVehicle_type(String vehicle_type) {
+        this.vehicle_type = vehicle_type;
+    }
+
     String vehicle_type;
     int capacity;
 
@@ -43,15 +53,17 @@ public class LiveCab {
     int fare;
 
     ArrayList<String> riders_ids;
+
+    public ArrayList<String> getRiders_names() {
+        return riders_names;
+    }
+
+    public void setRiders_names(ArrayList<String> riders_names) {
+        this.riders_names = riders_names;
+    }
+
+    ArrayList<String> riders_names;
     int count_riders;
-
-    public String getVehicle_type() {
-        return vehicle_type;
-    }
-
-    public void setVehicle_type(String vehicle_type) {
-        this.vehicle_type = vehicle_type;
-    }
 
     public ArrayList<String> getRiders_ids() {
         return riders_ids;
@@ -61,9 +73,30 @@ public class LiveCab {
         this.riders_ids = riders_ids;
     }
 
+    public ArrayList<String> getDisplay() {
+     //   return new ArrayList<String>(Collections.singleton("hi"));
+        ArrayList<String> rider = getRiders_names();
+        double riderFare = fare/count_riders;
+        display = new ArrayList<String>();
+        Iterator itr = rider.iterator();
+        while(itr.hasNext()){
+            display.add(itr.next().toString()+"\t \t" + riderFare);
+        }
+        return display;
+    }
+
+    public void setDisplay(ArrayList<String> display) {
+
+        this.display = display;
+    }
+
+    ArrayList<String> display;
+
+
+
     public LiveCab(String cab_id, String driver_id, boolean live, String from_location,
             String to_location, String departure_time, int fare,
-            ArrayList<String> riders_ids) {
+            ArrayList<String> riders_ids, ArrayList<String> riders_names) {
         this.live_cab_id = cab_id;
         this.driver_id = driver_id;
         this.live = live;
@@ -72,6 +105,7 @@ public class LiveCab {
         this.departure_time = departure_time;
         this.fare = fare;
         this.riders_ids = riders_ids;
+        this.riders_names = riders_names;
 
         final Driver[] driver = {new Driver()};
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -143,7 +177,7 @@ public class LiveCab {
     }
 
     public int getCount_riders() {
-        return count_riders;
+        return getRiders_names().size();
     }
 
     public void setCount_riders(int count_riders) {

@@ -84,21 +84,21 @@ public class RequestViewModel extends ViewModel {
                         request[0] = documentSnapshot.toObject(Request.class);
                         Log.d(TAG, request[0].getFrom_location());
 
-                        ArrayList<String> ridersNames = new ArrayList<>();
-                        ArrayList<String> ridersIds = request[0].getRiders_ids();
-                        for(int i=0;i<ridersIds.size();i++){
-                            String id = ridersIds.get(i);
-                            DocumentReference d = db.collection("students").document(id);
-                            d.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                @Override
-                                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                    String name = documentSnapshot.get("displayName", String.class);
-                                    Log.d(TAG, "onSuccess: "+ name);
-                                    ridersNames.add(name);
-                                }
-                            });
-                        }
-                        request[0].setRiders_names(ridersNames);
+//                        ArrayList<String> ridersNames = new ArrayList<>();
+//                        ArrayList<String> ridersIds = request[0].getRiders_ids();
+//                        for(int i=0;i<ridersIds.size();i++){
+//                            String id = ridersIds.get(i);
+//                            DocumentReference d = db.collection("students").document(id);
+//                            d.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//                                @Override
+//                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                                    String name = documentSnapshot.get("displayName", String.class);
+//                                    Log.d(TAG, "onSuccess: "+ name);
+//                                    ridersNames.add(name);
+//                                }
+//                            });
+//                        }
+//                        request[0].setRiders_names(ridersNames);
 
 
                         mRequestLiveData.setValue(request[0]);

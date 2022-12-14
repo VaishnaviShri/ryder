@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Asus/AppData/Local/Android/Sdk/platforms/android-33/data/res/layout/simple_list_item_1.xml" value="0.1" />
         <entry key="..\:/Users/srida/ryder/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
         <entry key="..\:/Users/srida/ryder/app/src/main/res/drawable/avatar_background.xml" value="0.1" />
         <entry key="..\:/Users/srida/ryder/app/src/main/res/drawable/ic_launcher_background.xml" value="0.137" />
@@ -17,20 +18,25 @@
         <entry key="..\:/Users/srida/ryder/app/src/main/res/layout/request_cab_card.xml" value="0.2734375" />
         <entry key="..\:/Users/srida/ryder/app/src/main/res/mipmap-anydpi-v26/avatar.xml" value="0.137" />
         <entry key="..\:/cs4_1/ryder/app/src/main/res/layout-v31/fragment_add_request.xml" value="0.10885416666666667" />
-        <entry key="..\:/cs4_1/ryder/app/src/main/res/layout/chat_message_view.xml" value="0.1" />
+        <entry key="..\:/cs4_1/ryder/app/src/main/res/layout/chat_message_view.xml" value="0.264" />
         <entry key="..\:/cs4_1/ryder/app/src/main/res/layout/fragment_add_request.xml" value="0.2" />
         <entry key="..\:/cs4_1/ryder/app/src/main/res/layout/fragment_cabs.xml" value="0.1" />
         <entry key="..\:/cs4_1/ryder/app/src/main/res/layout/fragment_chat.xml" value="0.1" />
         <entry key="..\:/cs4_1/ryder/app/src/main/res/layout/fragment_driver.xml" value="0.1766304347826087" />
+        <entry key="..\:/cs4_1/ryder/app/src/main/res/layout/fragment_driver_live_cab_details.xml" value="0.18478260869565216" />
         <entry key="..\:/cs4_1/ryder/app/src/main/res/layout/fragment_driver_profile.xml" value="0.13677536231884058" />
+        <entry key="..\:/cs4_1/ryder/app/src/main/res/layout/fragment_driver_request_details.xml" value="0.25" />
         <entry key="..\:/cs4_1/ryder/app/src/main/res/layout/fragment_login.xml" value="0.1" />
         <entry key="..\:/cs4_1/ryder/app/src/main/res/layout/fragment_my_details.xml" value="0.25" />
-        <entry key="..\:/cs4_1/ryder/app/src/main/res/layout/fragment_request.xml" value="0.25" />
+        <entry key="..\:/cs4_1/ryder/app/src/main/res/layout/fragment_request.xml" value="0.1" />
         <entry key="..\:/cs4_1/ryder/app/src/main/res/layout/fragment_request_details.xml" value="0.16799999999999998" />
+        <entry key="..\:/cs4_1/ryder/app/src/main/res/layout/fragment_request_driver.xml" value="0.25" />
         <entry key="..\:/cs4_1/ryder/app/src/main/res/layout/fragment_ride_details.xml" value="0.10989583333333333" />
+        <entry key="..\:/cs4_1/ryder/app/src/main/res/layout/fragment_student_live_cab_details.xml" value="0.23958333333333334" />
         <entry key="..\:/cs4_1/ryder/app/src/main/res/layout/fragment_student_profile.xml" value="0.14447463768115942" />
         <entry key="..\:/cs4_1/ryder/app/src/main/res/layout/fragment_student_request_details.xml" value="0.13632246376811594" />
         <entry key="..\:/cs4_1/ryder/app/src/main/res/layout/live_cab_card.xml" value="0.346" />
+        <entry key="..\:/cs4_1/ryder/app/src/main/res/layout/livecab_details_card.xml" value="0.1" />
         <entry key="..\:/cs4_1/ryder/app/src/main/res/layout/request_cab_card.xml" value="0.25" />
         <entry key="..\:/cs4_1/ryder/app/src/main/res/layout/request_details_card.xml" value="0.25" />
         <entry key="..\:/cs4_1/ryder/app/src/main/res/layout/request_driver_card.xml" value="0.25" />

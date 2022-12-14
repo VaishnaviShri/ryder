@@ -7,12 +7,14 @@ import android.view.ViewGroup;
 
 import com.example.ryderr.R;
 import com.example.ryderr.models.LiveCab;
+import com.example.ryderr.ui.main.student.studentHome.CabsFragmentDirections;
 
 import java.util.Collections;
 import java.util.List;
 
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class LiveCabListAdapter extends RecyclerView.Adapter<LiveCabViewHolder> {
@@ -26,10 +28,12 @@ public class LiveCabListAdapter extends RecyclerView.Adapter<LiveCabViewHolder> 
         this.context = context;
     }
     LifecycleOwner l;
+    ViewGroup parent;
 
     @Override
     public LiveCabViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
+        this.parent = parent;
         LayoutInflater inflater = LayoutInflater.from(context);
         cabViewModel = new LiveCabsViewModel();
 l = (LifecycleOwner) parent.getContext();
@@ -74,6 +78,14 @@ l = (LifecycleOwner) parent.getContext();
             cabViewModel.joinCabStudent(liveCab.getLive_cab_id());
             holder.joinButton.setVisibility(View.GONE);
             holder.seeDetailBtn.setVisibility(View.VISIBLE);
+        });
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CabsFragmentDirections.ActionCabsFragToStudentCabDetailsFragment action = CabsFragmentDirections.actionCabsFragToStudentCabDetailsFragment();
+                action.setCabId(liveCab.getLive_cab_id());
+                Navigation.findNavController(parent).navigate(action);
+            }
         });
 
 //        holder.setOnClickListener(new View.OnClickListener() {

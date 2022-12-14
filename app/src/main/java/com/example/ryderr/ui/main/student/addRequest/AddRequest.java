@@ -19,6 +19,7 @@ import com.example.ryderr.models.Student;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -55,11 +56,24 @@ public class AddRequest extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        EditText  fromLocationET = view.findViewById(R.id.editViewPickup);
-
-        EditText toLocationET = view.findViewById(R.id.editTextDestination);
-
         EditText timeET = view.findViewById(R.id.editViewDateTime);
+
+        Spinner pickup_spinner = (Spinner) view.findViewById(R.id.pickup_spinner);
+        ArrayAdapter<CharSequence> pickup_adapter = ArrayAdapter.createFromResource(getContext(),
+                R.array.locations, android.R.layout.simple_spinner_item);
+        pickup_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        pickup_spinner.setAdapter(pickup_adapter);
+
+
+
+        Spinner destination_spinner = (Spinner) view.findViewById(R.id.destination_spinner);
+        ArrayAdapter<CharSequence> destination_adapter = ArrayAdapter.createFromResource(getContext(),
+                R.array.locations, android.R.layout.simple_spinner_item);
+        destination_adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        destination_spinner.setAdapter(destination_adapter);
+
+
+
 
         Spinner type_spinner = (Spinner) view.findViewById(R.id.vehicle_type_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
@@ -67,7 +81,7 @@ public class AddRequest extends Fragment {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         type_spinner.setAdapter(adapter);
 
-        String vehicle_type = String.valueOf(type_spinner.getSelectedItem());
+
 
         Spinner capacity_spinner = (Spinner) view.findViewById(R.id.capacity_spinner);
         ArrayAdapter<CharSequence> capacityAdapter = ArrayAdapter.createFromResource(getContext(),
@@ -84,9 +98,12 @@ public class AddRequest extends Fragment {
 
 
         Student requestingStudent = new Student();
-        String uid = FirebaseAuth.getInstance().getUid();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
         ArrayList<String> riders_ids = new ArrayList<>();
-        riders_ids.add(uid);
+        riders_ids.add(user.getUid());
+        ArrayList<String> riders_names = new ArrayList<>();
+        riders_names.add(user.getDisplayName());
 
 
 
@@ -94,38 +111,70 @@ public class AddRequest extends Fragment {
         Button addButton = view.findViewById(R.id.submit_request_button);
         addButton.setOnClickListener(view1 -> {
 
-            DocumentReference docRef = db.collection("values").document("values");
-            docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                        @Override
-                        public void onSuccess(DocumentSnapshot documentSnapshot) {
-                            r_id = documentSnapshot.get("request_count", Integer.class);
-                            Log.d(TAG, "onSuccess: "+ r_id);
-                            DocumentReference docRef = db.collection("values").document("values");
-                            docRef.update("request_count", r_id+1);
+            String from_location = String.valueOf(pickup_spinner.getSelectedItem());
+            int fromCode = pickup_spinner.getSelectedItemPosition();
 
-                            String request_id = String.valueOf(r_id);
-                            Log.d(TAG, "onViewCreated: String id" + request_id);
-                            String capacity_string = String.valueOf(capacity_spinner.getSelectedItem());
-                            int capacity = Integer.parseInt(capacity_string);
-                            Request request = new Request(
-                                    request_id,
-                                    capacity,
-                                    vehicle_type,
-                                    fromLocationET.getText().toString(),
-                                    toLocationET.getText().toString(),
-                                    timeET.getText().toString(),
-                                    riders_ids
-                            );
+            String destination_location = String.valueOf(destination_spinner.getSelectedItem());
+            int destinationCode = destination_spinner.getSelectedItemPosition();
 
-                            addReq(request, view);
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.e(TAG, "onFailure: count not fetched"+ e.getMessage() );
-                        }
-                    });
+            String capacity_string = String.valueOf(capacity_spinner.getSelectedItem());
+            int capacity = Integer.parseInt(capacity_string);
+
+            String vehicle_type = String.valueOf(type_spinner.getSelectedItem());
+            int vehicleCode = type_spinner.getSelectedItemPosition();
+
+
+            if(fromCode==destinationCode){
+                Toast.makeText(getContext(), "Choose valid locations", Toast.LENGTH_SHORT).show();
+            }else{
+                DocumentReference docRef = db.collection("values").document("values");
+                docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            @Override
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                r_id = documentSnapshot.get("request_count", Integer.class);
+                                Log.d(TAG, "onSuccess: "+ r_id);
+                                DocumentReference docRef = db.collection("values").document("values");
+                                docRef.update("request_count", r_id+1);
+
+                                String request_id = String.valueOf(r_id);
+                                Log.d(TAG, "onViewCreated: String id" + request_id);
+                                Request request = new Request(
+                                        request_id,
+                                        capacity,
+                                        vehicle_type,
+                                        from_location,
+                                        destination_location,
+                                        timeET.getText().toString(),
+                                        riders_ids,
+                                        riders_names
+                                );
+                                //get fare
+                                String tripCode = String.valueOf(fromCode) + String.valueOf(destinationCode) + vehicleCode;
+                                db.collection("fares").document(tripCode).get()
+                                                .addOnSuccessListener(
+                                                        new OnSuccessListener<DocumentSnapshot>() {
+                                                            @Override
+
+                                                            public void onSuccess(
+                                                                    DocumentSnapshot documentSnapshot) {
+                                                                int fare =0;
+                                                                fare =documentSnapshot.get("fare", Integer.class);
+                                                                request.setExpected_fare(fare);
+                                                                addReq(request, view);
+                                                            }
+                                                        });
+
+
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.e(TAG, "onFailure: count not fetched"+ e.getMessage() );
+                            }
+                        });
+            }
+
 
 
         });

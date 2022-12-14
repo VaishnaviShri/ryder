@@ -8,7 +8,6 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -44,7 +43,7 @@ public class RequestDriverViewModel extends ViewModel {
         if (driverRequests == null) {
             driverRequests = new MutableLiveData<>();
         }
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+
 
         ArrayList<Request> requestList = new ArrayList<>();
         db.collection("requests")

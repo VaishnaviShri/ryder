@@ -2,11 +2,18 @@ plugins {
     id 'com.android.application'
     id 'androidx.navigation.safeargs'
 
+    id 'com.google.firebase.crashlytics'
+
 
 }
 
+
 android {
     compileSdk 33
+
+    buildFeatures {
+        viewBinding true
+    }
 
     defaultConfig {
         applicationId "com.example.ryderr"
@@ -66,8 +73,11 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui:0.6.0'
 
 
+    implementation 'com.google.firebase:firebase-crashlytics'
+    implementation 'com.google.firebase:firebase-analytics'
 
-        // Declare the dependency for the Cloud Firestore library
+
+    // Declare the dependency for the Cloud Firestore library
         // When using the BoM, you don't specify versions in Firebase library dependencies
 
 
