@@ -19,6 +19,7 @@ import com.example.ryderr.models.Student;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -84,9 +85,12 @@ public class AddRequest extends Fragment {
 
 
         Student requestingStudent = new Student();
-        String uid = FirebaseAuth.getInstance().getUid();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
         ArrayList<String> riders_ids = new ArrayList<>();
-        riders_ids.add(uid);
+        riders_ids.add(user.getUid());
+        ArrayList<String> riders_names = new ArrayList<>();
+        riders_names.add(user.getDisplayName());
 
 
 
@@ -114,7 +118,8 @@ public class AddRequest extends Fragment {
                                     fromLocationET.getText().toString(),
                                     toLocationET.getText().toString(),
                                     timeET.getText().toString(),
-                                    riders_ids
+                                    riders_ids,
+                                    riders_names
                             );
 
                             addReq(request, view);

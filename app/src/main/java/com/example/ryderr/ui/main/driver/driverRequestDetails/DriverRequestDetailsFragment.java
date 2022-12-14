@@ -88,7 +88,8 @@ public class DriverRequestDetailsFragment extends Fragment {
                                     request.getTo_location(),
                                     request.getTime(),
                                     request.getExpected_fare(),
-                                    request.getRiders_ids());
+                                    request.getRiders_ids(),
+                                    request.getRiders_names());
                             db.collection("cabs").document(requestId).set(cab);
 
                             db.collection("requests").document(requestId).delete();

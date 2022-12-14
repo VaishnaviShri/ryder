@@ -17,12 +17,13 @@
             android:layout_marginTop="30dp"
             android:id="@+id/driverLiveCabsDetailsText"
             android:layout_marginBottom="30dp"/>
+
         <include
-        android:id="@+id/driverLiveCabDetailsCard"
-        layout="@layout/livecab_details_card"
-            android:layout_width="wrap_content"
+            layout="@layout/livecab_details_card"
+            android:id="@+id/driverLiveCabDetailsCard"
+            android:layout_below="@id/driverLiveCabsDetailsText"
             android:layout_height="wrap_content"
-            android:layout_below="@id/driverLiveCabsDetailsText"/>
+            android:layout_width="wrap_content" />
         <com.google.android.material.button.MaterialButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

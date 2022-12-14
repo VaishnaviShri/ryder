@@ -76,9 +76,11 @@ public MutableLiveData<Integer> getRiderCount(){
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 LiveCab cab = documentSnapshot.toObject(LiveCab.class);
                 ArrayList<String> ids = cab.getRiders_ids();
+                ArrayList<String> names = cab.getRiders_names();
                 String currentId = FirebaseAuth.getInstance().getUid();
                 ids.add(currentId);
                 cab.setRiders(ids);
+                cab.setRiders_names(names);
                 int count = cab.getCount_riders();
                 riderCount.setValue(count);
                 cab.setCount_riders(count+1);
@@ -110,21 +112,21 @@ public MutableLiveData<Integer> getRiderCount(){
                         cab[0] = documentSnapshot.toObject(LiveCab.class);
                         Log.d(TAG, cab[0].getFrom_location());
 
-                        ArrayList<String> ridersNames = new ArrayList<>();
-                        ArrayList<String> ridersIds = cab[0].getRiders_ids();
-                        for(int i=0;i<ridersIds.size();i++){
-                            String id = ridersIds.get(i);
-                            DocumentReference d = db.collection("students").document(id);
-                            d.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                @Override
-                                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                    String name = documentSnapshot.get("displayName", String.class);
-                                    Log.d(TAG, "onSuccess: "+ name);
-                                    ridersNames.add(name);
-                                }
-                            });
-                        }
-                        cab[0].setRiders_names(ridersNames);
+//                        ArrayList<String> ridersNames = new ArrayList<>();
+//                        ArrayList<String> ridersIds = cab[0].getRiders_ids();
+//                        for(int i=0;i<ridersIds.size();i++){
+//                            String id = ridersIds.get(i);
+//                            DocumentReference d = db.collection("students").document(id);
+//                            d.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//                                @Override
+//                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                                    String name = documentSnapshot.get("displayName", String.class);
+//                                    Log.d(TAG, "onSuccess: "+ name);
+//                                    ridersNames.add(name);
+//                                }
+//                            });
+//                        }
+//                        cab[0].setRiders_names(ridersNames);
 
 
                         liveCabDetail.setValue(cab[0]);

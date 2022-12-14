@@ -64,6 +64,33 @@ public class UpcomingViewModel extends ViewModel {
     }
 
     MutableLiveData<LiveCab> driverLiveCabDetails;
+    MutableLiveData<ArrayList<String>> ridersNames;
+    public MutableLiveData<ArrayList<String>> getRidersNames(String cabId){
+
+        if(ridersNames==null)
+            ridersNames = new MutableLiveData<>();
+
+        final LiveCab[] cab = {new LiveCab()};
+
+        DocumentReference docRef = db.collection("cabs").document(cabId);
+        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                cab[0] = documentSnapshot.toObject(LiveCab.class);
+                ArrayList<String> names = cab[0].getRiders_names();
+                ArrayList<String> displayNames = new ArrayList<>();
+                int cost = cab[0].getFare() / cab[0].getCount_riders();
+                String costDisplay = String.valueOf(cost);
+//                for (int i = 0; i < cab[0].getCount_riders(); i++) {
+//                    String display = names.get(i) + "\t\t" + costDisplay;
+//                    displayNames.add(display);
+//                }
+                ridersNames.setValue(names);
+            }
+        });
+
+        return ridersNames;
+    }
     public MutableLiveData<LiveCab> getDriverLiveCabDetails(String cabId){
         if(driverLiveCabDetails ==null)
             driverLiveCabDetails = new MutableLiveData<>();
@@ -78,21 +105,21 @@ public class UpcomingViewModel extends ViewModel {
                         cab[0] = documentSnapshot.toObject(LiveCab.class);
                         Log.d(TAG, cab[0].getFrom_location());
 
-                        ArrayList<String> ridersNames = new ArrayList<>();
-                        ArrayList<String> ridersIds = cab[0].getRiders_ids();
-                        for(int i=0;i<ridersIds.size();i++){
-                            String id = ridersIds.get(i);
-                            DocumentReference d = db.collection("students").document(id);
-                            d.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                @Override
-                                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                    String name = documentSnapshot.get("displayName", String.class);
-                                    Log.d(TAG, "onSuccess: "+ name);
-                                    ridersNames.add(name);
-                                }
-                            });
-                        }
-                        cab[0].setRiders_names(ridersNames);
+//                        ArrayList<String> ridersNames = new ArrayList<>();
+//                        ArrayList<String> ridersIds = cab[0].getRiders_ids();
+//                        for(int i=0;i<ridersIds.size();i++){
+//                            String id = ridersIds.get(i);
+//                            DocumentReference d = db.collection("students").document(id);
+//                            d.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//                                @Override
+//                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                                    String name = documentSnapshot.get("displayName", String.class);
+//                                    Log.d(TAG, "onSuccess: "+ name);
+//                                    ridersNames.add(name);
+//                                }
+//                            });
+//                        }
+//                        cab[0].setRiders_names(ridersNames);
 
 
                         driverLiveCabDetails.setValue(cab[0]);

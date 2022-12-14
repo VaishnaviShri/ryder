@@ -110,7 +110,7 @@ public class Request {
     }
 
     public Request(String request_id, int capacity, String vehicle_type, String from_location,
-            String to_location, String time, ArrayList<String> riders_ids) {
+            String to_location, String time, ArrayList<String> riders_ids, ArrayList<String> riders_names) {
         this.request_id = request_id;
         this.capacity = capacity;
         this.vehicle_type = vehicle_type;
@@ -118,8 +118,9 @@ public class Request {
         this.to_location = to_location;
         this.time = time;
         this.riders_ids = riders_ids;
+        this.riders_names = riders_names;
 
-        this.count_riders = riders_ids.size();
+        this.count_riders = riders_names.size();
     }
 
     public Request(int capacity, String vehicle_type, String from_location,

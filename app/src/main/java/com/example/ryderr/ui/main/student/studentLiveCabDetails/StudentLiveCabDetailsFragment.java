@@ -12,6 +12,8 @@ import com.example.ryderr.R;
 import com.example.ryderr.models.LiveCab;
 import com.example.ryderr.ui.main.student.studentHome.live.LiveCabsViewModel;
 
+import java.util.ArrayList;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -65,7 +67,14 @@ public class StudentLiveCabDetailsFragment extends Fragment {
                 capacity.setText(String.valueOf(liveCabOb.getCapacity()));
                 driver.setText(liveCabOb.getDriver_name());
                 ridersList = (ListView)view.findViewById(R.id.ridersList_livecabdetails);
-                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, liveCabOb.getDisplay());
+                ArrayList<String> rider = liveCabOb.getRiders_names();
+                double riderFare = liveCabOb.getFare()/ liveCabOb.getCount_riders();
+//                ArrayList<String> display = new ArrayList<String>();
+//                Iterator itr = rider.iterator();
+//                while(itr.hasNext()){
+//                    display.add(itr.next().toString()+"\t \t" + riderFare);
+//                }
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, rider);
                 ridersList.setAdapter(arrayAdapter);
             }
         };
