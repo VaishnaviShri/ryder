@@ -5,12 +5,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.ryderr.R;
 import com.example.ryderr.models.LiveCab;
 import com.example.ryderr.ui.main.student.studentHome.live.LiveCabsViewModel;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
@@ -18,6 +23,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.navigation.Navigation;
 
 public class StudentLiveCabDetailsFragment extends Fragment {
     private LiveCab liveCabOb;
@@ -80,6 +86,23 @@ public class StudentLiveCabDetailsFragment extends Fragment {
         };
 
         mViewModel.getLiveCabDetail(cabId).observe(getViewLifecycleOwner(), observer);
+
+        Button studentJoinCabBtn = view.findViewById(R.id.studentLiveCabJoinBtn);
+        studentJoinCabBtn.setOnClickListener(view1 -> {
+            String uid = FirebaseAuth.getInstance().getUid();
+            String ridername = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            db.collection("cabs").document(liveCabOb.getLive_cab_id()).update(
+                            "riders_names", FieldValue.arrayUnion(ridername))
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Navigation.findNavController(view).navigate(R.id.action_studentCabDetailsFragment_to_cabsFragment);
+                        }
+                    });
+            //
+
+        });
 
         super.onViewCreated(view, savedInstanceState);
     }

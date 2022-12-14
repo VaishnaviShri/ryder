@@ -138,7 +138,7 @@ public class LoginFragment extends Fragment {
             String name = user.getDisplayName();
             Student student = new Student(user.getUid(), name, user.getEmail());
             db.collection("students").document(student.getUid()).set(student);
-            Toast.makeText(getContext(), name, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), "welcome " +name, Toast.LENGTH_SHORT).show();
             Navigation.findNavController(mView).navigate(R.id.action_loginFragment_to_cabsFragment);
         }else{
             Toast.makeText(getContext(), "Please use BITS mail!", Toast.LENGTH_SHORT).show();

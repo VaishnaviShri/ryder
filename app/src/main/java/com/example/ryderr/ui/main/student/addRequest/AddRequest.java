@@ -121,6 +121,7 @@ public class AddRequest extends Fragment {
             int capacity = Integer.parseInt(capacity_string);
 
             String vehicle_type = String.valueOf(type_spinner.getSelectedItem());
+            int vehicleCode = type_spinner.getSelectedItemPosition();
 
 
             if(fromCode==destinationCode){
@@ -148,7 +149,7 @@ public class AddRequest extends Fragment {
                                         riders_names
                                 );
                                 //get fare
-                                String tripCode = String.valueOf(fromCode) + String.valueOf(destinationCode);
+                                String tripCode = String.valueOf(fromCode) + String.valueOf(destinationCode) + vehicleCode;
                                 db.collection("fares").document(tripCode).get()
                                                 .addOnSuccessListener(
                                                         new OnSuccessListener<DocumentSnapshot>() {

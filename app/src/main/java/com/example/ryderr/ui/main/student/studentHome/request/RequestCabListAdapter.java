@@ -44,8 +44,10 @@ public class RequestCabListAdapter extends RecyclerView.Adapter<RequestCabViewHo
 
 
         Request request = list.get(position);
-        holder.from.setText(request.getFrom_location());
-        holder.to.setText(request.getTo_location());
+        String from ="from: "+ request.getFrom_location();
+        holder.from.setText(from);
+        String destination = "to: "+ request.getTo_location();
+        holder.to.setText(destination);
         holder.timeText.setText(request.getTime());
 
         int capacity = request.getCapacity();

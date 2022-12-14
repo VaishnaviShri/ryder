@@ -177,7 +177,7 @@ public class LiveCab {
     }
 
     public int getCount_riders() {
-        return count_riders;
+        return getRiders_names().size();
     }
 
     public void setCount_riders(int count_riders) {
