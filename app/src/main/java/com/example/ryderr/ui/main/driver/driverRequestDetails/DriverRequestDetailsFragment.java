@@ -13,7 +13,6 @@ import com.example.ryderr.models.Driver;
 import com.example.ryderr.models.LiveCab;
 import com.example.ryderr.models.Request;
 import com.example.ryderr.ui.main.driver.driverHome.request_Driver.RequestDriverViewModel;
-import com.example.ryderr.ui.main.student.studentLiveCabDetails.StudentLiveCabDetailsFragmentDirections;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -108,6 +107,7 @@ public class DriverRequestDetailsFragment extends Fragment {
                                     cab.setDriver_id(driverId);
                                     cab.setDriver_name(driver.getName());
                                     cab.setVehicle_number(driver.getVehicle_number());
+                                    cab.setUpi_id(driver.getUpi_id());
 
                                         db.collection("cabs").document(requestId).set(cab);
 

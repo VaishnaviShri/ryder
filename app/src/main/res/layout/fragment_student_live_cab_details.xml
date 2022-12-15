@@ -40,6 +40,14 @@
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:text="Chat" />
+        <Button
+            android:id="@+id/paymentBtn"
+            android:layout_below="@+id/studentLiveCabChatBtn"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:text="Pay with UPI" />
     </RelativeLayout>
 
 </FrameLayout>

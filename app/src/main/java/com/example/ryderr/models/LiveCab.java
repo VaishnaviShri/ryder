@@ -21,6 +21,16 @@ public class LiveCab {
     String driver_name;
     String vehicle_number;
 
+    public String getUpi_id() {
+        return upi_id;
+    }
+
+    public void setUpi_id(String upi_id) {
+        this.upi_id = upi_id;
+    }
+
+    String upi_id;
+
     public String getVehicle_type() {
         return vehicle_type;
     }
