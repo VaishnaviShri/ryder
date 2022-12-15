@@ -24,13 +24,14 @@
             android:layout_below="@id/driverLiveCabsDetailsText"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content" />
+
         <com.google.android.material.button.MaterialButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="End Ride"
             android:id="@+id/endRideButton"
             android:layout_below="@id/driverLiveCabDetailsCard"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="End Ride" />
     </RelativeLayout>
 
 

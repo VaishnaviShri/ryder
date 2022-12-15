@@ -66,7 +66,7 @@ public class RequestDriverViewModel extends ViewModel {
                                     for (QueryDocumentSnapshot document : task.getResult()) {
                                         Log.d(TAG, document.getId() + " => " + document.getData());
                                         Request request = document.toObject(Request.class);
-                                        if(request.getCapacity()<capacity && Objects.equals(
+                                        if(request.getCapacity()<=capacity && Objects.equals(
                                                 request.getVehicle_type(), vehicleType))
                                             requestList.add(request);
                                     }

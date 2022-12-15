@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -12,6 +13,7 @@ import com.example.ryderr.models.Driver;
 import com.example.ryderr.models.LiveCab;
 import com.example.ryderr.models.Request;
 import com.example.ryderr.ui.main.driver.driverHome.request_Driver.RequestDriverViewModel;
+import com.example.ryderr.ui.main.student.studentLiveCabDetails.StudentLiveCabDetailsFragmentDirections;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,6 +25,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 public class DriverRequestDetailsFragment extends Fragment {
@@ -121,6 +124,14 @@ public class DriverRequestDetailsFragment extends Fragment {
             }
         };
         mRequestViewModel.getRequest(requestId).observe(getViewLifecycleOwner(), observer);
+
+        Button chatBtn = view.findViewById(R.id.driverRequestChatBtn);
+        chatBtn.setOnClickListener(view1 -> {
+            DriverRequestDetailsFragmentDirections.ActionDriverRequestDetailsFragmentToChatFragment action = DriverRequestDetailsFragmentDirections.actionDriverRequestDetailsFragmentToChatFragment();
+            action.setGroupId(requestId);
+            Navigation.findNavController(view).navigate((NavDirections) action);
+
+        });
 
     }
 }

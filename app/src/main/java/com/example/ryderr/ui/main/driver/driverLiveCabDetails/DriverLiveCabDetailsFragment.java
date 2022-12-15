@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -12,12 +13,14 @@ import com.example.ryderr.R;
 import com.example.ryderr.databinding.FragmentDriverLiveCabDetailsBinding;
 import com.example.ryderr.models.LiveCab;
 import com.example.ryderr.ui.main.driver.driverHome.upcoming.UpcomingViewModel;
+import com.example.ryderr.ui.main.student.studentLiveCabDetails.StudentLiveCabDetailsFragmentDirections;
 import com.google.android.material.button.MaterialButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 public class DriverLiveCabDetailsFragment extends Fragment {
@@ -104,6 +107,14 @@ public class DriverLiveCabDetailsFragment extends Fragment {
         startBtn.setOnClickListener(view1 -> {
             mViewModel.startRide(cabId);
             Navigation.findNavController(view).navigate(R.id.action_driverLiveCabDetailsFragment_to_driverFragment);
+
+        });
+        Button chatBtn = view.findViewById(R.id.driverLiveCabChatBtn);
+        chatBtn.setOnClickListener(view1 -> {
+            String requestId = liveCabOb.getLive_cab_id();
+            DriverLiveCabDetailsFragmentDirections.ActionDriverLiveCabDetailsFragmentToChatFragment action = DriverLiveCabDetailsFragmentDirections.actionDriverLiveCabDetailsFragmentToChatFragment();
+            action.setGroupId(requestId);
+            Navigation.findNavController(view).navigate((NavDirections) action);
 
         });
         super.onViewCreated(view, savedInstanceState);

@@ -25,14 +25,23 @@
             layout="@layout/request_details_card"
             android:layout_below="@id/driverRequestDetailsText"
             />
+
         <com.google.android.material.button.MaterialButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Accept"
             android:id="@+id/acceptButton"
             android:layout_below="@id/driverRequestDetailsCard"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"/>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:text="Accept" />
+        <Button
+            android:id="@+id/driverRequestChatBtn"
+            android:layout_below="@+id/acceptButton"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:text="Chat" />
     </RelativeLayout>
 
 </FrameLayout>
