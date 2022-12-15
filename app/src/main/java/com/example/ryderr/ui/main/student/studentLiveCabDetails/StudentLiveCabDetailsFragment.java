@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ryderr.R;
 import com.example.ryderr.models.LiveCab;
@@ -148,6 +149,8 @@ public class StudentLiveCabDetailsFragment extends Fragment {
         try {
             startActivity(chooser);
         } catch (ActivityNotFoundException e) {
+            Toast.makeText(getContext(), "No UPI app found, please install one to continue", Toast.LENGTH_SHORT).show();
+
             // Define what your app should do if no activity can handle the intent.
         }
 

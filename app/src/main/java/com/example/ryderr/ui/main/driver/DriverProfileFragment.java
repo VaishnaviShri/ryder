@@ -8,18 +8,23 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.ryderr.R;
+import com.example.ryderr.models.LiveCab;
+import com.example.ryderr.ui.main.driver.driverHome.upcoming.UpcomingListAdapter;
+import com.example.ryderr.ui.main.driver.driverHome.upcoming.UpcomingViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-/**
- * A simple {@link Fragment} subclass. Use the {@link DriverProfileFragment#newInstance} factory
- * method to create an instance of this fragment.
- */
+
 public class DriverProfileFragment extends Fragment {
 
     FirebaseAuth mAuth;
@@ -59,5 +64,21 @@ public class DriverProfileFragment extends Fragment {
             Navigation.findNavController(view).navigate(R.id.action_driverProfileFragment_to_splashScreen);
 
         });
+
+        UpcomingViewModel mViewModel = new UpcomingViewModel();
+        RecyclerView recyclerView = getView().findViewById(R.id.past_ride_recycler);
+        Observer<ArrayList<LiveCab>> observer = new Observer<ArrayList<LiveCab>>() {
+            @Override
+            public void onChanged(ArrayList<LiveCab> cabs) {
+                ArrayList<LiveCab> list = cabs;
+                UpcomingListAdapter adapter = new UpcomingListAdapter(cabs, getContext());
+                recyclerView.setAdapter(adapter);
+
+            }
+        };
+        mViewModel.getDriverPastRides().observe(getViewLifecycleOwner(), observer);
+        recyclerView.setLayoutManager(
+                new LinearLayoutManager(getContext()));
+
     }
 }
