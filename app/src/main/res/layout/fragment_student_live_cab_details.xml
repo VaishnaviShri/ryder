@@ -31,7 +31,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
-            android:text="Join"/>
+            android:text="Join" />
+        <Button
+            android:id="@+id/studentLiveCabChatBtn"
+            android:layout_below="@+id/studentLiveCabJoinBtn"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:text="Chat" />
     </RelativeLayout>
 
 </FrameLayout>

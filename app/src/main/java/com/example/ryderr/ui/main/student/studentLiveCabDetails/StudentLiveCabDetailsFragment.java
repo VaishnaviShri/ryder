@@ -23,6 +23,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 public class StudentLiveCabDetailsFragment extends Fragment {
@@ -101,6 +102,14 @@ public class StudentLiveCabDetailsFragment extends Fragment {
                         }
                     });
             //
+
+        });
+        Button chatBtn = view.findViewById(R.id.studentLiveCabChatBtn);
+        chatBtn.setOnClickListener(view1 -> {
+            String requestId = liveCabOb.getLive_cab_id();
+            StudentLiveCabDetailsFragmentDirections.ActionStudentLiveCabDetailsFragmentToChatFragment action = StudentLiveCabDetailsFragmentDirections.actionStudentLiveCabDetailsFragmentToChatFragment();
+            action.setGroupId(requestId);
+            Navigation.findNavController(view).navigate((NavDirections) action);
 
         });
 

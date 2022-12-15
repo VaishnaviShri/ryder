@@ -23,6 +23,7 @@
         <entry key="..\:/cs4_1/ryder/app/src/main/res/layout/fragment_cabs.xml" value="0.1" />
         <entry key="..\:/cs4_1/ryder/app/src/main/res/layout/fragment_chat.xml" value="0.1" />
         <entry key="..\:/cs4_1/ryder/app/src/main/res/layout/fragment_driver.xml" value="0.1766304347826087" />
+        <entry key="..\:/cs4_1/ryder/app/src/main/res/layout/fragment_driver_current_cab_details.xml" value="0.22826086956521738" />
         <entry key="..\:/cs4_1/ryder/app/src/main/res/layout/fragment_driver_live_cab_details.xml" value="0.18478260869565216" />
         <entry key="..\:/cs4_1/ryder/app/src/main/res/layout/fragment_driver_profile.xml" value="0.13677536231884058" />
         <entry key="..\:/cs4_1/ryder/app/src/main/res/layout/fragment_driver_request_details.xml" value="0.25" />
@@ -35,6 +36,7 @@
         <entry key="..\:/cs4_1/ryder/app/src/main/res/layout/fragment_student_live_cab_details.xml" value="0.23958333333333334" />
         <entry key="..\:/cs4_1/ryder/app/src/main/res/layout/fragment_student_profile.xml" value="0.14447463768115942" />
         <entry key="..\:/cs4_1/ryder/app/src/main/res/layout/fragment_student_request_details.xml" value="0.13632246376811594" />
+        <entry key="..\:/cs4_1/ryder/app/src/main/res/layout/fragment_upcoming.xml" value="0.22826086956521738" />
         <entry key="..\:/cs4_1/ryder/app/src/main/res/layout/live_cab_card.xml" value="0.346" />
         <entry key="..\:/cs4_1/ryder/app/src/main/res/layout/livecab_details_card.xml" value="0.1" />
         <entry key="..\:/cs4_1/ryder/app/src/main/res/layout/request_cab_card.xml" value="0.25" />

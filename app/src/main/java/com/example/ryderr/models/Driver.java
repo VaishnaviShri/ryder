@@ -6,8 +6,18 @@ public class Driver {
     String uid;
     String name;
     String vehicle_number;
+
+    public String getCurrent_ride_id() {
+        return current_ride_id;
+    }
+
+    public void setCurrent_ride_id(String current_ride_id) {
+        this.current_ride_id = current_ride_id;
+    }
+
     String vehicle_type;
     int capacity;
+    String current_ride_id;
     ArrayList<String> my_rides_ids;
 
     public ArrayList<String> getMy_rides_ids() {

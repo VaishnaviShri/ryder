@@ -8,16 +8,16 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Upcoming Cab Details"
-            android:layout_centerHorizontal="true"
-            android:textSize="30dp"
-            android:layout_marginTop="30dp"
-            android:id="@+id/driverLiveCabsDetailsText"
-            android:layout_marginBottom="30dp"/>
 
+        <TextView
+            android:id="@+id/driverLiveCabsDetailsText"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:text="Live Cab Details"
+            android:textSize="30dp" />
         <include
             layout="@layout/livecab_details_card"
             android:id="@+id/driverLiveCabDetailsCard"
@@ -26,20 +26,12 @@
             android:layout_width="wrap_content" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/startRideButton"
+            android:id="@+id/endRideButton"
             android:layout_below="@id/driverLiveCabDetailsCard"
             android:layout_centerHorizontal="true"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:text="Start Ride" />
-        <Button
-            android:id="@+id/driverLiveCabChatBtn"
-            android:layout_below="@+id/startRideButton"
-            android:layout_centerHorizontal="true"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_width="wrap_content"
-            android:text="Chat" />
+            android:text="End Ride" />
     </RelativeLayout>
 
 

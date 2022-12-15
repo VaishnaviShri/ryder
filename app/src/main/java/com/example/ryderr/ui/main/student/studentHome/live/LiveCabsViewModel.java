@@ -64,6 +64,7 @@ public class LiveCabsViewModel extends ViewModel {
 public MutableLiveData<Integer> getRiderCount(){
     if(riderCount==null)
         riderCount = new MutableLiveData<>(0);
+
     return riderCount;
 }
     public boolean joinCabStudent(String cabId){

@@ -149,6 +149,9 @@
         <action
             android:id="@+id/action_driverFragment_to_driverProfileFragment"
             app:destination="@id/driverProfileFragment" />
+        <action
+            android:id="@+id/action_driverFragment_to_driverCurrentCab"
+            app:destination="@id/driverCurrentCab" />
     </fragment>
     <fragment
         android:id="@+id/driverProfileFragment"
@@ -214,6 +217,14 @@
         <action
             android:id="@+id/action_driverRequestDetailsFragment_to_driverFragment"
             app:destination="@id/driverFragment" />
+        <action
+            android:id="@+id/action_driverRequestDetailsFragment_to_chatFragment"
+            app:destination="@id/chatFragment" >
+            <argument
+                android:name="group_id"
+                app:argType="string"
+                android:defaultValue="0" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/studentLiveCabDetailsFragment"
@@ -227,6 +238,14 @@
         <action
             android:id="@+id/action_studentCabDetailsFragment_to_cabsFragment"
             app:destination="@id/cabsFragment" />
+        <action
+            android:id="@+id/action_studentLiveCabDetailsFragment_to_chatFragment"
+            app:destination="@id/chatFragment" >
+            <argument
+                android:name="group_id"
+                app:argType="string"
+                android:defaultValue="0" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/driverLiveCabDetailsFragment"
@@ -240,7 +259,24 @@
         <action
             android:id="@+id/action_driverLiveCabDetailsFragment_to_driverFragment"
             app:destination="@id/driverFragment" />
+        <action
+            android:id="@+id/action_driverLiveCabDetailsFragment_to_chatFragment"
+            app:destination="@id/chatFragment" >
+            <argument
+                android:name="group_id"
+                app:argType="string"
+                android:defaultValue="0" />
+        </action>
 
+    </fragment>
+    <fragment
+        android:id="@+id/driverCurrentCab"
+        android:name="com.example.ryderr.ui.main.driver.driverHome.DriverCurrentCabDetailsFragment"
+        android:label="current cab"
+        tools:layout="@layout/fragment_driver_current_cab_details">
+        <action
+            android:id="@+id/action_driverCurrentCab_to_driverFragment"
+            app:destination="@id/driverFragment" />
     </fragment>
 
 

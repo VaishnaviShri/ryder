@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -50,6 +51,9 @@ public class UpcomingFragment extends Fragment {
 
             }
         };
+        view.findViewById(R.id.current_ride_btn).setOnClickListener(view1 -> {
+            Navigation.findNavController(view).navigate(R.id.action_driverFragment_to_driverCurrentCab);
+        });
 
         mViewModel.getDriverCabs();
         mViewModel.driverCabslist.observe(getViewLifecycleOwner(), observer);

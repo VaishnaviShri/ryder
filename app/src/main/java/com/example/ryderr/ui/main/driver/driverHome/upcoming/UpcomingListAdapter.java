@@ -47,6 +47,13 @@ public class UpcomingListAdapter extends RecyclerView.Adapter<UpcomingViewHolder
         holder.timeText.setText(liveCab.getDeparture_time());
         holder.fare_text.setText(liveCab.getFareText());
 
+        int capacity = liveCab.getCapacity();
+        int count_riders = liveCab.getCount_riders();
+        String progressText = count_riders + "/" + capacity;
+        holder.cab_progress_text.setText(progressText);
+        holder.progress_bar.setMax(capacity);
+        holder.progress_bar.setProgress(count_riders);
+
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

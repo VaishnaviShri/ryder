@@ -20,6 +20,16 @@ public class ChatMessage {
     public final static String MSG_SENT = "MSG_SENT";
     private String msgType;
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    String username;
+
 
     public String getMsgType() {
         return msgType;

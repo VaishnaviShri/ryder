@@ -1,10 +1,5 @@
 package com.example.ryderr.models;
 
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -80,7 +75,7 @@ public class LiveCab {
         display = new ArrayList<String>();
         Iterator itr = rider.iterator();
         while(itr.hasNext()){
-            display.add(itr.next().toString()+"\t \t" + riderFare);
+            display.add(itr.next().toString()+"\t \tRs. " + riderFare);
         }
         return display;
     }
@@ -96,7 +91,8 @@ public class LiveCab {
 
     public LiveCab(String cab_id, String driver_id, boolean live, String from_location,
             String to_location, String departure_time, int fare,
-            ArrayList<String> riders_ids, ArrayList<String> riders_names) {
+            ArrayList<String> riders_ids, ArrayList<String> riders_names, String driverName, String vehicleNumber, String vehicle_type,
+            int capacity) {
         this.live_cab_id = cab_id;
         this.driver_id = driver_id;
         this.live = live;
@@ -107,19 +103,19 @@ public class LiveCab {
         this.riders_ids = riders_ids;
         this.riders_names = riders_names;
 
-        final Driver[] driver = {new Driver()};
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        DocumentReference docRef = db.collection("drivers").document(driver_id);
-        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                driver[0] = documentSnapshot.toObject(Driver.class);
-            }
-        });
-        this.driver_name = driver[0].getName();
-        this.vehicle_number = driver[0].getVehicle_number();
-        this.vehicle_type = driver[0].getVehicle_type();
-        this.capacity = driver[0].getCapacity();
+//        final Driver[] driver = {new Driver()};
+//        FirebaseFirestore db = FirebaseFirestore.getInstance();
+//        DocumentReference docRef = db.collection("drivers").document(driver_id);
+//        docRef.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//            @Override
+//            public void onSuccess(DocumentSnapshot documentSnapshot) {
+//                driver[0] = documentSnapshot.toObject(Driver.class);
+//            }
+//        });
+        this.driver_name = driverName;//driver[0].getName();
+        this.vehicle_number = vehicleNumber;//driver[0].getVehicle_number();
+        this.vehicle_type = vehicle_type;//driver[0].getVehicle_type();
+        this.capacity = capacity;//driver[0].getCapacity();
 
         this.count_riders = riders_ids.size();
 

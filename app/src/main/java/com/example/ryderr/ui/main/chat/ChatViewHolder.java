@@ -15,6 +15,7 @@ public class ChatViewHolder extends RecyclerView.ViewHolder {
     LinearLayout msgLayoutR;
     TextView msgTimeR;
     TextView msgTimeL;
+    TextView msgNameR, msgNameL;
 
     public ChatViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -25,6 +26,8 @@ public class ChatViewHolder extends RecyclerView.ViewHolder {
             msgTextL = (TextView)itemView.findViewById(R.id.left_msg_text);
             msgLayoutL = (LinearLayout)itemView.findViewById(R.id.left_msg);
             msgLayoutR = (LinearLayout)itemView.findViewById(R.id.right_msg);
+            msgNameR = itemView.findViewById(R.id.right_msg_name);
+            msgNameL = itemView.findViewById(R.id.left_msg_name);
 
         }
     }
