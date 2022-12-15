@@ -103,6 +103,14 @@ public class StudentLiveCabDetailsFragment extends Fragment {
             //
 
         });
+//        Button chatBtn;
+//        chatBtn.setOnClickListener(view1 -> {
+//            String requestId = liveCabOb.getLive_cab_id();
+//            StudentLiveCabDetailsFragmentArgs.A action = StudentRequestDetailsFragmentDirections.actionStudentRequestDetailsFragmentToChatFragment();
+//            action.setGroupId(requestId);
+//            Navigation.findNavController(view).navigate((NavDirections) action);
+//
+//        });
 
         super.onViewCreated(view, savedInstanceState);
     }

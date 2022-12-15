@@ -11,6 +11,8 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
@@ -50,6 +52,13 @@ public class ChatViewModel extends ViewModel {
                                 createGroup(groupId, dummy);
                             }
                             //TODO: sort list by time
+
+                            Collections.sort(chatsList, new Comparator<ChatMessage>() {
+                                @Override
+                                public int compare(ChatMessage c1, ChatMessage c2) {
+                                    return c1.getMsgTime().compareTo(c2.getMsgTime());
+                                }
+                            });
                             mChatMessages.setValue(chatsList);
                         }else{
                             Log.d(TAG, "Error getting requests documents: ", task.getException());
