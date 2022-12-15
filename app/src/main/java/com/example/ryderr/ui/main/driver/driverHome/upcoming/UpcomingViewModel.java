@@ -136,6 +136,39 @@ public class UpcomingViewModel extends ViewModel {
         return driverLiveCabDetails;
     }
 
+    MutableLiveData<ArrayList<LiveCab>> driverPastRides;
+    public MutableLiveData<ArrayList<LiveCab>> getDriverPastRides(){
+        if(driverPastRides==null)
+            driverPastRides = new MutableLiveData<>();
+
+
+
+        String driverId = FirebaseAuth.getInstance().getUid();
+        ArrayList<LiveCab> list = new ArrayList<>();
+        db.collection("cabs")
+                //.whereEqualTo("live", true)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+                                LiveCab liveCab = document.toObject(LiveCab.class);
+                                if(Objects.equals(liveCab.getDriver_id(), driverId) && !liveCab.isLive())
+                                    list.add(liveCab);
+
+                            }
+                            driverPastRides.setValue(list);
+                        } else {
+                            Log.d(TAG, "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+
+        return driverPastRides;
+    }
+
     public void endRide(String cabId){
         db.collection("cabs").document(cabId).update("live", false);
 

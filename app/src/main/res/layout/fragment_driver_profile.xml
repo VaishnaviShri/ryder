@@ -35,8 +35,25 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:text="Log out"
+        android:layout_margin="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/driver_profile_email" />
+
+    <TextView
+        android:id="@+id/past_text"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Past rides:"
+        app:layout_constraintTop_toBottomOf="@id/driver_logout_button"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/past_ride_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/past_text" />
 </androidx.constraintlayout.widget.ConstraintLayout>

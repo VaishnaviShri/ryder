@@ -51,14 +51,16 @@ public class UpcomingFragment extends Fragment {
 
             }
         };
-        view.findViewById(R.id.current_ride_btn).setOnClickListener(view1 -> {
-            Navigation.findNavController(view).navigate(R.id.action_driverFragment_to_driverCurrentCab);
-        });
-
         mViewModel.getDriverCabs();
         mViewModel.driverCabslist.observe(getViewLifecycleOwner(), observer);
         recyclerView.setLayoutManager(
                 new LinearLayoutManager(getContext()));
+
+        view.findViewById(R.id.current_ride_btn).setOnClickListener(view1 -> {
+            Navigation.findNavController(view).navigate(R.id.action_driverFragment_to_driverCurrentCab);
+        });
+
+
     }
 
 
